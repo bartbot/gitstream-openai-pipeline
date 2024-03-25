@@ -1,7 +1,13 @@
+# -*- mode: yaml -*-
+# This example configuration for provides basic automations to get started with gitStream.
+# View the gitStream quickstart for more examples: https://docs.gitstream.cm/quick-start/
+manifest:
+  version: 1.0
 automations:
-  issue_opened_automation: 
+  # Add a label that indicates how many minutes it will take to review the PR.
+  estimated_time_to_review:
     if:
-      - issue.state == 'opened'  # Trigger on newly opened issues
+      - true
     run:
       - label:  # Apply labels
           - enhancement  # Replace with your label names
