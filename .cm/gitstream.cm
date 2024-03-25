@@ -4,12 +4,12 @@ automations:
       - issue.state == 'opened'  # Trigger on newly opened issues
     run:
       - label:  # Apply labels
-          - priority/high  # Replace with your label names
-          - ~needs-triage  
+          - enhancement  # Replace with your label names
+          - ~documentation  
       - comment:  # Add a basic comment
-          body: "Thank you for submitting the issue! Our team will review it shortly.\n cc @review-team"  # Adapt as needed 
+          body: "Thank you for submitting the issue! Our team will review it shortly.\n cc @bartzhang"  # Adapt as needed 
       - gitlab_ci:  # Trigger a pipeline
-          pipeline: analysis-pipeline  # Replace with your pipeline's name 
+          pipeline: ./.gitlab-ci.yml  # Replace with your pipeline's name 
       - gitlab_mr:  # Create a merge request (with limitations)
           title: "Draft MR: Issue #{{ issue.iid }}" 
           target_branch: issue-fixes  # Target a common branch for issue MRs
