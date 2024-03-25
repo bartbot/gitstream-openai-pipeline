@@ -1,0 +1,38 @@
+stages:
+  - intent_understanding
+  - code_search
+  - code_modification
+  - response_generation
+
+# Stage 1: Intent Understanding
+intent_understanding:
+  stage: intent_understanding
+  script:
+    - python analyze_intent.py # Assumes a script handling this
+  artifacts:
+    paths:
+      - structured_intent.json
+
+# Stage 2: Code Search (Refined from previous example)
+code_search:
+  stage: code_search
+  needs: ["intent_understanding"]
+  script:
+    - python search_code.py
+
+# Stage 3: Code Modification
+code_modification:
+  stage: code_modification
+  needs: ["code_search"]
+  script:
+    - python modify_code.py
+  artifacts:
+    paths:
+      - modified_files/
+
+# Stage 4: Response Generation
+response_generation:
+  stage: response_generation
+  needs: ["code_modification"] # Or access to intent, etc.
+  script:
+    - python generate_response.py 
